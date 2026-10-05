@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF7F2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="روتين أسماء">
+  <title>روتين أسماء اليومي والأسري 🌸</title>
+
+  <!-- Google Fonts: Alexandria for headings & numbers, Tajawal for clean reading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- App Shell Container -->
+  <div class="app-layout">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-greeting">
+          <div class="greeting-badge">
+            <span class="greeting-icon" id="greeting-icon">🌸</span>
+            <span class="greeting-time" id="greeting-time">صباح الخير والبركة</span>
+          </div>
+          <h1 class="user-title">يا أسماء</h1>
+        </div>
+
+        <div class="header-actions">
+          <button class="icon-btn" id="btn-quick-add" title="إضافة نشاط سريع" aria-label="إضافة نشاط سريع">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+          <button class="icon-btn" id="btn-toggle-sound" title="نغمات التشجيع الهادئة" aria-label="نغمات التشجيع">
+            <span id="sound-icon">🔔</span>
+          </button>
+          <button class="icon-btn" id="btn-app-settings" title="الإعدادات والنسخ الاحتياطي" aria-label="الإعدادات">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Encouragement Banner (Warm, non-judgmental) -->
+      <div class="encouragement-pill" id="encouragement-pill">
+        <span class="pill-sparkle">✨</span>
+        <span class="pill-text" id="encouragement-text">أنتِ عماد البيت ودفئه.. خذي يومك خطوة بخطوة بكل لطف.</span>
+      </div>
+    </header>
+
+    <!-- Main Screens View Area -->
+    <main class="main-content" id="main-content">
+      
+      <!-- ================= 1. SCREEN: TODAY (اليوم) ================= -->
+      <section class="screen-view active" id="screen-today" data-screen="today">
+        
+        <!-- Today date bar -->
+        <div class="today-date-strip">
+          <div class="date-info">
+            <span class="day-name" id="today-day-name">اليوم</span>
+            <span class="full-date" id="today-full-date">جارِ التحميل...</span>
+          </div>
+          <div class="day-progress-wrap">
+            <span class="progress-label" id="today-progress-text">0 من 0 مكتمل</span>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="today-progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Activity Hero Card -->
+        <div class="hero-next-card" id="hero-next-card">
+          <!-- Dynamically populated or empty state -->
+        </div>
+
+        <!-- Quran Habit Spotlight -->
+        <div class="quran-spotlight-card" id="quran-today-card">
+          <div class="quran-card-header">
+            <div class="quran-icon-wrap">📖</div>
+            <div class="quran-info">
+              <h3>ورد القرآن الكريم (ساعة البركة)</h3>
+              <p id="quran-time-range">06:00 ص - 07:00 ص</p>
+            </div>
+            <button class="btn-check-quran" id="btn-toggle-quran-done" title="إتمام الورد">
+              <span>تم بحمد الله</span> ✨
+            </button>
+          </div>
+        </div>
+
+        <!-- Categories Filter Chips -->
+        <div class="chips-scroller" id="today-filter-chips">
+          <button class="filter-chip active" data-filter="all">الكل</button>
+          <button class="filter-chip" data-filter="quran">📖 القرآن</button>
+          <button class="filter-chip" data-filter="saleem">🍱 سليم</button>
+          <button class="filter-chip" data-filter="murad">🍽️ مراد</button>
+          <button class="filter-chip" data-filter="cleaning">🧹 البيت</button>
+          <button class="filter-chip" data-filter="meals">🍲 الوجبات</button>
+          <button class="filter-chip" data-filter="selfcare">💆‍♀️ عنايتي</button>
+          <button class="filter-chip" data-filter="shopping">🛒 مشاوير</button>
+        </div>
+
+        <!-- Today Timeline List -->
+        <div class="timeline-container">
+          <div class="section-title-row">
+            <h2>جدول اليوم</h2>
+            <span class="count-tag" id="today-items-count">0 مهام</span>
+          </div>
+
+          <div class="timeline-list" id="today-timeline-list">
+            <!-- Timeline items rendered via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. SCREEN: SCHEDULE (جدولي والتقويم) ================= -->
+      <section class="screen-view" id="screen-schedule" data-screen="schedule">
+        <div class="screen-header-row">
+          <div>
+            <h2>جدولي الأسبوعي واليومي</h2>
+            <p class="subtitle">مواعيدك، التزاماتك العائلية، وتنظيم الأوقات</p>
+          </div>
+          <button class="btn-primary-sm" id="btn-add-schedule-item">
+            <span>+ إضافة نشاط</span>
+          </button>
+        </div>
+
+        <!-- Weekly Days Carousel / Selector -->
+        <div class="week-days-selector" id="schedule-week-selector">
+          <!-- 7 days rendered via JS -->
+        </div>
+
+        <!-- Quran Customizer Card -->
+        <div class="feature-card quran-settings-box">
+          <div class="box-icon">🕊️</div>
+          <div class="box-content">
+            <h4>جلسة القرآن اليومية (بداية اليوم)</h4>
+            <p>ساعة خاصة بالتدبر وبدء النهار ببركة وسكينة</p>
+            <div class="quran-controls-row">
+              <label>
+                وقت البدء:
+                <input type="time" id="quran-start-time-input" value="06:00">
+              </label>
+              <button class="btn-secondary-sm" id="btn-save-quran-time">حفظ التوقيت</button>
+            </div>
+            <div class="repeat-days-mini" id="quran-repeat-days">
+              <!-- Day toggles for Quran repeating -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Conflict Banner (when overlap detected) -->
+        <div class="conflict-alert-card hidden" id="conflict-alert-card">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-text">
+            <strong>ملاحظة تضارب في المواعيد:</strong>
+            <p id="conflict-alert-message">يوجد نشاط آخر متزامن في نفس الوقت.</p>
+          </div>
+          <button class="btn-resolve-conflict" id="btn-resolve-conflict">مراجعة</button>
+        </div>
+
+        <!-- Schedule Items for Selected Day -->
+        <div class="schedule-items-container">
+          <div class="section-title-row">
+            <h3 id="schedule-day-title">أنشطة اليوم المحدد</h3>
+            <span class="count-tag" id="schedule-day-count">0 أنشطة</span>
+          </div>
+
+          <div class="schedule-list" id="schedule-list">
+            <!-- Schedule items rendered via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. SCREEN: CLEANING (تنظيف وتنظيم البيت) ================= -->
+      <section class="screen-view" id="screen-cleaning" data-screen="cleaning">
+        <div class="screen-header-row">
+          <div>
+            <h2>تنظيف وتنظيم البيت</h2>
+            <p class="subtitle">توزيع مهام الغرف بمرونة ودون إرهاق</p>
+          </div>
+          <button class="btn-primary-sm" id="btn-add-cleaning-task">
+            <span>+ مهمة جديدة</span>
+          </button>
+        </div>
+
+        <!-- View Tabs: By Room vs By Frequency -->
+        <div class="segmented-tabs">
+          <button class="seg-btn active" data-cleaning-view="room">حسب الغرف والمساحات</button>
+          <button class="seg-btn" data-cleaning-view="frequency">حسب التكرار (يومي / أسبوعي)</button>
+        </div>
+
+        <!-- Room Selector Carousel (when room view active) -->
+        <div class="chips-scroller" id="cleaning-room-chips">
+          <button class="filter-chip active" data-room="all">كل المساحات</button>
+          <button class="filter-chip" data-room="kitchen">🍳 المطبخ</button>
+          <button class="filter-chip" data-room="bathrooms">🚿 الحمامات</button>
+          <button class="filter-chip" data-room="bedrooms">🛏️ غرف النوم</button>
+          <button class="filter-chip" data-room="living">🛋️ الصالة والمعيشة</button>
+          <button class="filter-chip" data-room="laundry">🧺 الغسيل والكوي</button>
+        </div>
+
+        <!-- Cleaning Tasks Container -->
+        <div class="cleaning-tasks-container" id="cleaning-tasks-container">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- ================= 4. SCREEN: MEALS (خطة الوجبات) ================= -->
+      <section class="screen-view" id="screen-meals" data-screen="meals">
+        <div class="screen-header-row">
+          <div>
+            <h2>خطة الوجبات الأسبوعية</h2>
+            <p class="subtitle">راحة بالك من سؤال كل يوم: ماذا سنأكل؟</p>
+          </div>
+        </div>
+
+        <!-- Week Days Horizontal Selector -->
+        <div class="week-days-selector" id="meals-week-selector">
+          <!-- 7 days rendered via JS -->
+        </div>
+
+        <!-- Current Selected Day Label -->
+        <div class="meals-day-banner">
+          <h3 id="meals-selected-day-label">وجبات يوم السبت</h3>
+          <span class="day-hint">يمكنك نسخ أي وجبة لأيام أخرى أو نقل المقادير للمشتريات بضغطة زر</span>
+        </div>
+
+        <!-- 3 Dedicated Meal Tracks -->
+        <div class="meals-cards-grid">
+          
+          <!-- 1. Saleem's Lunchbox -->
+          <div class="meal-track-card card-saleem">
+            <div class="track-header">
+              <div class="track-title-wrap">
+                <span class="track-emoji">🍱</span>
+                <div>
+                  <h4>لانش بوكس سليم</h4>
+                  <p class="track-sub">أفكاره المدرسية ووجبته الخفيفة</p>
+                </div>
+              </div>
+              <button class="btn-card-action" onclick="app.editMealSection('saleem')" title="تعديل">
+                ✏️
+              </button>
+            </div>
+            
+            <div class="track-body" id="saleem-meal-body">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="track-actions-row">
+              <button class="action-link-btn" onclick="app.copyMealPrompt('saleem')">
+                📋 نسخ ليوم آخر
+              </button>
+              <button class="action-link-btn highlight" onclick="app.sendMealToShopping('saleem')">
+                🛒 أضف مقادير اللانش بوكس للمشتريات
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. Family Main Meal -->
+          <div class="meal-track-card card-family">
+            <div class="track-header">
+              <div class="track-title-wrap">
+                <span class="track-emoji">🍲</span>
+                <div>
+                  <h4>وجبة العائلة الرئيسية</h4>
+                  <p class="track-sub">الغداء أو الطبق الرئيسي للمنزل</p>
+                </div>
+              </div>
+              <button class="btn-card-action" onclick="app.editMealSection('family')" title="تعديل">
+                ✏️
+              </button>
+            </div>
+
+            <div class="track-body" id="family-meal-body">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="track-actions-row">
+              <button class="action-link-btn" onclick="app.copyMealPrompt('family')">
+                📋 نسخ ليوم آخر
+              </button>
+              <button class="action-link-btn highlight" onclick="app.sendMealToShopping('family')">
+                🛒 أضف المقادير لقائمة المشتريات
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. Murad's Dinner -->
+          <div class="meal-track-card card-murad">
+            <div class="track-header">
+              <div class="track-title-wrap">
+                <span class="track-emoji">🍽️</span>
+                <div>
+                  <h4>عشاء مراد</h4>
+                  <p class="track-sub">خياراته وتفضيلاته الخاصة للعشاء</p>
+                </div>
+              </div>
+              <button class="btn-card-action" onclick="app.editMealSection('murad')" title="تعديل">
+                ✏️
+              </button>
+            </div>
+
+            <div class="track-body" id="murad-meal-body">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="track-actions-row">
+              <button class="action-link-btn" onclick="app.copyMealPrompt('murad')">
+                📋 نسخ ليوم آخر
+              </button>
+              <button class="action-link-btn highlight" onclick="app.sendMealToShopping('murad')">
+                🛒 أضف المقادير للمشتريات
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= 5. SCREEN: SHOPPING & ERRANDS (المشتريات والمشاوير) ================= -->
+      <section class="screen-view" id="screen-shopping" data-screen="shopping">
+        <div class="screen-header-row">
+          <div>
+            <h2>المشتريات والمشاوير</h2>
+            <p class="subtitle">قوائم مقسمة ومرتبة بحسب موعد وطبيعة الشراء</p>
+          </div>
+          <button class="btn-primary-sm" id="btn-add-shopping-item">
+            <span>+ غرض جديد</span>
+          </button>
+        </div>
+
+        <!-- 4 Specialized Shopping Buckets Tabs -->
+        <div class="shopping-category-tabs">
+          <button class="shop-tab active" data-category="fridge">
+            <span class="tab-badge-icon">🥦</span>
+            <span class="tab-badge-title">مشتريات الثلاجة</span>
+            <span class="tab-badge-sub">الأربعاء أسبوعياً</span>
+          </button>
+
+          <button class="shop-tab" data-category="monthly">
+            <span class="tab-badge-icon">🥩</span>
+            <span class="tab-badge-title">أول الشهر</span>
+            <span class="tab-badge-sub">لحوم ومنظفات</span>
+          </button>
+
+          <button class="shop-tab" data-category="pantry">
+            <span class="tab-badge-icon">🌾</span>
+            <span class="tab-badge-title">المونة والتموين</span>
+            <span class="tab-badge-sub">أرز ومعلبات</span>
+          </button>
+
+          <button class="shop-tab" data-category="errands">
+            <span class="tab-badge-icon">🚗</span>
+            <span class="tab-badge-title">مشاوير وطلبات</span>
+            <span class="tab-badge-sub">صيدلية وعام</span>
+          </button>
+        </div>
+
+        <!-- Shopping Category Banner & Helper Actions -->
+        <div class="category-header-banner" id="shopping-banner">
+          <div>
+            <h3 id="current-shopping-cat-title">مشتريات الثلاجة (الأربعاء)</h3>
+            <p id="current-shopping-cat-desc">الخضار الطازج، الفواكه، الألبان والأجبان لتجديد الثلاجة أسبوعياً</p>
+          </div>
+          <div class="cat-helper-btns">
+            <button class="btn-ghost-sm" id="btn-load-recurring-template" title="استرجاع المقترحات الأساسية">
+              🔄 قائمة دورية
+            </button>
+            <button class="btn-ghost-sm text-danger" id="btn-clear-completed-shopping" title="حذف ما تم شراؤه">
+              🧹 تنظيف المشترى
+            </button>
+          </div>
+        </div>
+
+        <!-- Shopping Items List -->
+        <div class="shopping-list-container" id="shopping-items-list">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- ================= 6. SCREEN: SELF-CARE (عنايتي الخاصة) ================= -->
+      <section class="screen-view" id="screen-selfcare" data-screen="selfcare">
+        <div class="screen-header-row">
+          <div>
+            <h2>عنايتي ولحظاتي الخاصة 🌸</h2>
+            <p class="subtitle">مساحتك الهادئة.. صحتك، راحتك، واهتمامك بنفسك أولاً</p>
+          </div>
+          <button class="btn-primary-sm" id="btn-add-selfcare-item">
+            <span>+ روتين عناية</span>
+          </button>
+        </div>
+
+        <!-- Private Sanctuary Quote -->
+        <div class="sanctuary-quote-box">
+          <div class="quote-flower">🌿</div>
+          <p class="quote-content">"لا يمكنك سكب الماء من إبريق فارغ.. اعتنِ بنفسكِ لتفيضي حباً ورعاية لعائلتكِ."</p>
+        </div>
+
+        <!-- Self Care Categories Carousel -->
+        <div class="chips-scroller" id="selfcare-filter-chips">
+          <button class="filter-chip active" data-care-filter="all">جميع اللحظات</button>
+          <button class="filter-chip" data-care-filter="skin">💆‍♀️ بشرة وشعر</button>
+          <button class="filter-chip" data-care-filter="movement">🧘‍♀️ مشي ورياضة</button>
+          <button class="filter-chip" data-care-filter="peace">☕ هدوء وقراءة</button>
+          <button class="filter-chip" data-care-filter="rest">😴 راحة ونوم</button>
+        </div>
+
+        <!-- Self Care Grid / List -->
+        <div class="selfcare-list-container" id="selfcare-items-list">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Mobile Native Touch Feel) -->
+    <nav class="bottom-nav">
+      <button class="nav-tab active" data-target="today">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <span class="nav-label">اليوم</span>
+      </button>
+
+      <button class="nav-tab" data-target="schedule">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <span class="nav-label">جدولي</span>
+      </button>
+
+      <button class="nav-tab" data-target="cleaning">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </div>
+        <span class="nav-label">البيت</span>
+      </button>
+
+      <button class="nav-tab" data-target="meals">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="1" x2="6" y2="4"></line>
+            <line x1="10" y1="1" x2="10" y2="4"></line>
+            <line x1="14" y1="1" x2="14" y2="4"></line>
+          </svg>
+        </div>
+        <span class="nav-label">الوجبات</span>
+      </button>
+
+      <button class="nav-tab" data-target="shopping">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
+        <span class="nav-label">المشتريات</span>
+      </button>
+
+      <button class="nav-tab" data-target="selfcare">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </div>
+        <span class="nav-label">عنايتي</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ================= MODALS & DRAWERS ================= -->
+
+  <!-- 1. Quick Add / Activity Modal -->
+  <div class="modal-overlay hidden" id="modal-activity">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3 id="modal-activity-title">إضافة نشاط للجدول</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <form id="form-activity" class="modal-form" onsubmit="event.preventDefault(); app.saveActivityForm();">
+        <input type="hidden" id="activity-id">
+        
+        <div class="form-group">
+          <label for="activity-title">عنوان النشاط أو الموعد *</label>
+          <input type="text" id="activity-title" required placeholder="مثال: تحضير غداء خفيف، موعد طبيب، قراءة">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="activity-date">التاريخ *</label>
+            <input type="date" id="activity-date" required>
+          </div>
+          <div class="form-group half">
+            <label for="activity-time">الوقت *</label>
+            <input type="time" id="activity-time" required value="09:00">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="activity-duration">المدة التقديرية (بالدقائق)</label>
+            <select id="activity-duration">
+              <option value="15">15 دقيقة</option>
+              <option value="30" selected>30 دقيقة</option>
+              <option value="45">45 دقيقة</option>
+              <option value="60">ساعة واحدة</option>
+              <option value="90">ساعة ونصف</option>
+              <option value="120">ساعتان</option>
+            </select>
+          </div>
+          <div class="form-group half">
+            <label for="activity-category">التصنيف</label>
+            <select id="activity-category">
+              <option value="general">عام / التزامات</option>
+              <option value="quran">📖 ورد القرآن</option>
+              <option value="saleem">🍱 متعلق بسليم</option>
+              <option value="murad">🍽️ متعلق بمراد</option>
+              <option value="cleaning">🧹 تنظيف البيت</option>
+              <option value="meals">🍲 إعداد الطعام</option>
+              <option value="selfcare">💆‍♀️ عناية واسترخاء</option>
+              <option value="shopping">🚗 مشاوير وتسوق</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="activity-repeat">التكرار</label>
+          <select id="activity-repeat">
+            <option value="none">مرة واحدة فقط (غير متكرر)</option>
+            <option value="daily">يومياً</option>
+            <option value="weekly">أسبوعياً (في نفس اليوم)</option>
+            <option value="monthly">شهرياً</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="activity-notes">ملاحظات إضافية</label>
+          <textarea id="activity-notes" rows="2" placeholder="أي تفاصيل تودين تذكرها..."></textarea>
+        </div>
+
+        <div class="form-checkbox-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="activity-reminder" checked>
+            <span class="checkmark"></span>
+            <span>تفعيل تذكير لطيف للنشاط</span>
+          </label>
+        </div>
+
+        <!-- Conflict warning inside modal if detected in real-time -->
+        <div class="modal-conflict-hint hidden" id="modal-conflict-hint">
+          ⚠️ تنبيه: يوجد نشاط مجدول في هذا التوقيت، يمكنك الحفظ وسيتم تنبيهك لتعديله إن رغبتِ.
+        </div>
+
+        <div class="modal-actions-row">
+          <button type="button" class="btn-secondary" onclick="app.closeModals()">إلغاء</button>
+          <button type="submit" class="btn-primary">حفظ في الجداول ✨</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Postpone / Reschedule Modal -->
+  <div class="modal-overlay hidden" id="modal-postpone">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3>تأجيل المهمة برفق 🌿</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <div class="postpone-body">
+        <p class="postpone-desc" id="postpone-item-name">اسم المهمة</p>
+        <p class="postpone-encouragement">لا بأس يا أسماء.. صحتك وراحتك أهم. اختاري الوقت الأنسب لكِ:</p>
+        
+        <div class="postpone-options-grid">
+          <button class="postpone-choice-btn" onclick="app.applyPostpone('1hour')">
+            <span class="choice-icon">⏳</span>
+            <strong>تأجيل ساعة واحدة</strong>
+            <span>لاحقاً اليوم</span>
+          </button>
+          <button class="postpone-choice-btn" onclick="app.applyPostpone('evening')">
+            <span class="choice-icon">🌙</span>
+            <strong>تأجيل للمساء</strong>
+            <span>الساعة 08:00 م</span>
+          </button>
+          <button class="postpone-choice-btn highlight" onclick="app.applyPostpone('tomorrow')">
+            <span class="choice-icon">🌅</span>
+            <strong>نقل إلى الغد</strong>
+            <span>في بداية اليوم</span>
+          </button>
+          <button class="postpone-choice-btn" onclick="app.applyPostpone('nextweek')">
+            <span class="choice-icon">🗓️</span>
+            <strong>للأسبوع القادم</strong>
+            <span>نفس اليوم</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Edit Meal Modal -->
+  <div class="modal-overlay hidden" id="modal-meal">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3 id="modal-meal-title">تعديل الوجبة</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <form id="form-meal" class="modal-form" onsubmit="event.preventDefault(); app.saveMealForm();">
+        <input type="hidden" id="meal-track-type">
+        
+        <div class="form-group">
+          <label for="meal-title-input">اسم الوجبة / المقترح *</label>
+          <input type="text" id="meal-title-input" required placeholder="مثال: صينية دجاج بالخضار، ساندوتش جبن وخيار">
+        </div>
+
+        <div class="form-group">
+          <label for="meal-ingredients-input">المقادير والمكونات (مكون في كل سطر)</label>
+          <textarea id="meal-ingredients-input" rows="3" placeholder="طماطم، خيار، خبز توست، جبنة بيضاء..."></textarea>
+          <span class="input-hint">يمكن نقل هذه المكونات مباشرة لقائمة المشتريات لاحقاً</span>
+        </div>
+
+        <div class="form-group">
+          <label for="meal-notes-input">ملاحظات التجهيز والتحضير المسبق</label>
+          <textarea id="meal-notes-input" rows="2" placeholder="مثلاً: تتبيل الدجاج مساءً، تقطيع الفاكهة في علبة محكمة"></textarea>
+        </div>
+
+        <div class="modal-actions-row">
+          <button type="button" class="btn-secondary" onclick="app.closeModals()">إلغاء</button>
+          <button type="submit" class="btn-primary">حفظ الوجبة ✨</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Add/Edit Shopping Item Modal -->
+  <div class="modal-overlay hidden" id="modal-shopping">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3 id="modal-shopping-title">إضافة غرض للمشتريات</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <form id="form-shopping" class="modal-form" onsubmit="event.preventDefault(); app.saveShoppingForm();">
+        <input type="hidden" id="shopping-item-id">
+        
+        <div class="form-group">
+          <label for="shopping-item-name">اسم الغرض أو الطلب *</label>
+          <input type="text" id="shopping-item-name" required placeholder="مثال: حليب طازج، صدور دجاج، صابون جلي">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="shopping-item-category">القائمة / القسم *</label>
+            <select id="shopping-item-category" required>
+              <option value="fridge">🥦 مشتريات الثلاجة (الأربعاء)</option>
+              <option value="monthly">🥩 أول الشهر (لحوم ومنظفات)</option>
+              <option value="pantry">🌾 أساسيات المونة والتموين</option>
+              <option value="errands">🚗 مشاوير وطلبات طارئة</option>
+            </select>
+          </div>
+          <div class="form-group half">
+            <label for="shopping-item-qty">الكمية والمقدار</label>
+            <input type="text" id="shopping-item-qty" placeholder="مثال: 2 كيلو، 3 علب، 1 كيس">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="shopping-item-date">تاريخ الشراء المفضل (اختياري)</label>
+          <input type="date" id="shopping-item-date">
+        </div>
+
+        <div class="form-group">
+          <label for="shopping-item-note">ملاحظة خاصة (الماركة أو مكان الشراء)</label>
+          <input type="text" id="shopping-item-note" placeholder="مثلاً: من السوبرماركت الكبير أو نوع قليل الدسم">
+        </div>
+
+        <div class="modal-actions-row">
+          <button type="button" class="btn-secondary" onclick="app.closeModals()">إلغاء</button>
+          <button type="submit" class="btn-primary">حفظ في القائمة 🛒</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Add/Edit Cleaning Task Modal -->
+  <div class="modal-overlay hidden" id="modal-cleaning">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3 id="modal-cleaning-title">إضافة مهمة تنظيف</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <form id="form-cleaning" class="modal-form" onsubmit="event.preventDefault(); app.saveCleaningForm();">
+        <input type="hidden" id="cleaning-task-id">
+        
+        <div class="form-group">
+          <label for="cleaning-task-title">اسم المهمة *</label>
+          <input type="text" id="cleaning-task-title" required placeholder="مثال: مسح أسطح المطبخ، تنظيف الثلاجة">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="cleaning-task-room">المكان / الغرفة *</label>
+            <select id="cleaning-task-room" required>
+              <option value="kitchen">🍳 المطبخ</option>
+              <option value="bathrooms">🚿 الحمامات</option>
+              <option value="bedrooms">🛏️ غرف النوم</option>
+              <option value="living">🛋️ المعيشة والصالة</option>
+              <option value="laundry">🧺 الغسيل والكوي</option>
+            </select>
+          </div>
+          <div class="form-group half">
+            <label for="cleaning-task-freq">التكرار الدوري *</label>
+            <select id="cleaning-task-freq" required>
+              <option value="daily">يومي سريع</option>
+              <option value="alternate">يوم بعد يوم</option>
+              <option value="weekly">أسبوعي</option>
+              <option value="biweekly">مرتين بالشهر</option>
+              <option value="monthly">شهري عميق</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cleaning-task-duration">الوقت التقديري</label>
+          <select id="cleaning-task-duration">
+            <option value="10">10 دقائق (سريع)</option>
+            <option value="20" selected>20 دقيقة</option>
+            <option value="30">30 دقيقة</option>
+            <option value="45">45 دقيقة</option>
+            <option value="60">ساعة كاملة (عميق)</option>
+          </select>
+        </div>
+
+        <div class="modal-actions-row">
+          <button type="button" class="btn-secondary" onclick="app.closeModals()">إلغاء</button>
+          <button type="submit" class="btn-primary">حفظ المهمة 🧹</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Add/Edit Self Care Modal -->
+  <div class="modal-overlay hidden" id="modal-selfcare">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3 id="modal-selfcare-title">إضافة لحظة عناية خاصة</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <form id="form-selfcare" class="modal-form" onsubmit="event.preventDefault(); app.saveSelfCareForm();">
+        <input type="hidden" id="selfcare-item-id">
+        
+        <div class="form-group">
+          <label for="selfcare-title">عنوان النشاط أو العناية *</label>
+          <input type="text" id="selfcare-title" required placeholder="مثال: ماسك ترطيب الوجه، مشي 20 دقيقة، شرب كوب شاي بهدوء">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="selfcare-category">القسم *</label>
+            <select id="selfcare-category" required>
+              <option value="skin">💆‍♀️ بشرة وشعر</option>
+              <option value="movement">🧘‍♀️ مشي ورياضة</option>
+              <option value="peace">☕ هدوء وقراءة</option>
+              <option value="rest">😴 راحة ونوم</option>
+            </select>
+          </div>
+          <div class="form-group half">
+            <label for="selfcare-freq">التكرار المفضل</label>
+            <select id="selfcare-freq">
+              <option value="daily">يومياً</option>
+              <option value="thursday">كل خميس مساءً</option>
+              <option value="weekly">أسبوعياً</option>
+              <option value="weekend">في عطلة الأسبوع</option>
+              <option value="flexible">حسب الرغبة والوقت</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="selfcare-notes">ملاحظات وراحة البال</label>
+          <textarea id="selfcare-notes" rows="2" placeholder="ما الذي يجعلك تشعرين بالراحة أثناء هذا النشاط؟"></textarea>
+        </div>
+
+        <div class="modal-actions-row">
+          <button type="button" class="btn-secondary" onclick="app.closeModals()">إلغاء</button>
+          <button type="submit" class="btn-primary">حفظ في عنايتي 🌸</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. Copy Meal Modal -->
+  <div class="modal-overlay hidden" id="modal-copy-meal">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3>نسخ الوجبة إلى يوم آخر</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <div class="modal-body-content">
+        <p>اختاري اليوم الذي ترغبين بنسخ هذه الوجبة إليه:</p>
+        <div class="copy-target-days" id="copy-target-days-list">
+          <!-- Days choices populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. App Settings & Privacy Modal -->
+  <div class="modal-overlay hidden" id="modal-settings">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
+      <div class="modal-header">
+        <h3>الإعدادات والخصوصية</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">✕</button>
+      </div>
+      <div class="settings-content">
+        <div class="privacy-badge">
+          <span class="badge-lock">🔒</span>
+          <div>
+            <strong>تطبيقكِ خاص 100%</strong>
+            <p>جميع بياناتك وجداول أسرتك محفوظة فقط على جهازك الحالي بأمان وبدون أي مشاركة خارجية.</p>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h4>النسخ الاحتياطي والبيانات</h4>
+          <p class="settings-hint">يمكنك حفظ نسخة احتياطية من كل بياناتك أو استرجاعها في أي وقت:</p>
+          <div class="settings-btns-row">
+            <button class="btn-secondary-sm" onclick="app.exportBackup()">
+              💾 تحميل نسخة احتياطية (JSON)
+            </button>
+            <label class="btn-secondary-sm file-label">
+              📥 استرجاع نسخة سابقة
+              <input type="file" id="import-backup-file" accept=".json" style="display:none" onchange="app.importBackup(event)">
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h4>إعادة الضبط</h4>
+          <p class="settings-hint">إذا أردتِ استعادة الروتين الافتراضي المقترح أو مسح كل شيء للبدء من الصفر:</p>
+          <div class="settings-btns-row">
+            <button class="btn-ghost-sm" onclick="app.resetToDefaults()">
+              🔄 استعادة الروتين الافتراضي
+            </button>
+            <button class="btn-ghost-sm text-danger" onclick="app.clearAllData()">
+              🗑️ مسح الكل والبدء من الصفر
+            </button>
+          </div>
+        </div>
+
+        <div class="settings-footer">
+          <p>صُنع بكل محبة وتقدير لـ <strong>أسماء</strong> وعائلتها الكريمة 🌿</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Bar -->
+  <div class="toast-bar hidden" id="toast-bar">
+    <span class="toast-icon" id="toast-icon">✨</span>
+    <span class="toast-msg" id="toast-msg">تم الحفظ بنجاح</span>
+  </div>
+
+  <!-- Audio Context Chime Helper Script -->
+  <script src="app.js"></script>
+</body>
+</html>
